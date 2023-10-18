@@ -1,15 +1,6 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root"; // Default XAMPP username
-$password = "";     // Default XAMPP password
-$dbname = "gflow_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db_connection.php';
 
 // Retrieve form data
 $quantity = $_POST['quantity'];
@@ -20,15 +11,18 @@ $lot_number = $_POST['lot_number'];
 $material = $_POST['material'];
 $comments = $_POST['comments'];
 
-// Insert data into database
-$sql = "INSERT INTO blanks (quantity, thickness, diameter, scaling_factor, lot_number, material, comments) 
-        VALUES ('$quantity', '$thickness', '$diameter', '$scaling_factor', '$lot_number', '$material', '$comments')";
+// Loop through the quantity and insert each blank into the database
+for ($i = 0; $i < $quantity; $i++) {
+    $sql = "INSERT INTO blanks (thickness, diameter, scaling_factor, lot_number, material, comments) 
+            VALUES ('$thickness', '$diameter', '$scaling_factor', '$lot_number', '$material', '$comments')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "New blank added successfully!";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql) !== TRUE) {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        exit;  // Exit the loop and script if there's an error
+    }
 }
+
+echo $quantity . " blanks added successfully!";
 
 $conn->close();
 ?>
