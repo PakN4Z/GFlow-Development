@@ -2,16 +2,24 @@
 include 'db_connection.php';
 
 $id = $_POST['id'];
-$column = $_POST['column'];
-$value = $_POST['value'];
+$thickness = $_POST['thickness'];
+$diameter = $_POST['diameter'];
+$scaling_factor = $_POST['scaling_factor'];
+$lot_number = $_POST['lot_number'];
+$location = $_POST['location'];
+$comments = $_POST['comments'];
 
-$sql = "UPDATE blanks SET $column = '$value' WHERE id = $id";
+$query = "UPDATE blanks SET thickness=?, diameter=?, scaling_factor=?, lot_number=?, location=?, comments=? WHERE id=?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("ssssssd", $thickness, $diameter, $scaling_factor, $lot_number, $location, $comments, $id);
+$result = $stmt->execute();
 
-if ($conn->query($sql) === TRUE) {
+if ($result) {
     echo "success";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "error";
 }
 
+$stmt->close();
 $conn->close();
 ?>

@@ -39,7 +39,7 @@
             <?php
             // Fetch materials from the database and populate the dropdown
             include 'db_connection.php'; // Include your database connection file
-            $result = $conn->query("SELECT name FROM materials");
+            $result = $conn->query("SELECT * FROM blanks WHERE location='ARCHIVE'");
             while ($row = $result->fetch_assoc()) {
                 echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
             }
@@ -132,30 +132,6 @@
 function disableEditing(row) {
     row.removeClass('editing-row');
     
-    // Get the edited data
-    var id = row.data("id");
-    var thickness = row.find("[data-column='thickness']").text();
-    var diameter = row.find("[data-column='diameter']").text();
-    var scaling_factor = row.find("[data-column='scaling_factor']").text();
-    var lot_number = row.find("[data-column='lot_number']").text();
-    var location = row.find("[data-column='location']").data("value");
-    var comments = row.find("[data-column='comments']").text();
-
-    // Send the edited data to the server to update the database
-    $.post("update_blank.php", {
-        id: id,
-        thickness: thickness,
-        diameter: diameter,
-        scaling_factor: scaling_factor,
-        lot_number: lot_number,
-        location: location,
-        comments: comments
-    }, function(response) {
-        if (response !== "success") {
-            alert("Error updating record!");
-        }
-    });
-
     // Revert text fields to display state
     row.find('.editable').each(function() {
         var cell = $(this);
@@ -170,9 +146,6 @@ function disableEditing(row) {
         cell.data("value", selectedValue).text(selectedValue);
     });
 }
-
-// ... [Rest of your code remains unchanged]
-
 
     </script>
 	<script>
@@ -242,15 +215,9 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 $(document).ready(function() {
     $('.view-blanks-table').DataTable();
 });
-
-
-
-
-
 
 </script>
 
