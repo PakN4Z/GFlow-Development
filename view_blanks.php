@@ -132,7 +132,6 @@
 function disableEditing(row) {
     row.removeClass('editing-row');
     
-    // Get the edited data
     var id = row.data("id");
     var thickness = row.find("[data-column='thickness']").text();
     var diameter = row.find("[data-column='diameter']").text();
@@ -141,7 +140,7 @@ function disableEditing(row) {
     var location = row.find("[data-column='location']").data("value");
     var comments = row.find("[data-column='comments']").text();
 
-    // Send the edited data to the server to update the database
+    // Send the updated data to the server
     $.post("update_blank.php", {
         id: id,
         thickness: thickness,
@@ -155,6 +154,8 @@ function disableEditing(row) {
             alert("Error updating record!");
         }
     });
+}
+
 
     // Revert text fields to display state
     row.find('.editable').each(function() {
