@@ -1,14 +1,15 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View and Edit Blanks</title>
+    <link rel="stylesheet" href="style/gflow-style.css"> <!-- Link to your CSS file -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h2>All Blanks</h2>
-    <table border="1">
+	<div class="table-responsive">
+    <table class="view-blanks-table" border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -40,6 +41,7 @@
             ?>
         </tbody>
     </table>
+	</div>
 
     <script>
         $(document).ready(function() {

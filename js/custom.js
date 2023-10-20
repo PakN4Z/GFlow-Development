@@ -4,3 +4,7 @@ $(document).ready(function() {
         $(this).addClass('active'); // Add active class to the clicked link
     });
 });
+
+$(document).ready(function() {
+    $('.view-blanks-table').DataTable();
+});
