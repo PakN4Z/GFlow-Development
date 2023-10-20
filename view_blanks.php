@@ -154,8 +154,6 @@ function disableEditing(row) {
             alert("Error updating record!");
         }
     });
-}
-
 
     // Revert text fields to display state
     row.find('.editable').each(function() {
@@ -171,8 +169,6 @@ function disableEditing(row) {
         cell.data("value", selectedValue).text(selectedValue);
     });
 }
-
-// ... [Rest of your code remains unchanged]
 
 
     </script>
