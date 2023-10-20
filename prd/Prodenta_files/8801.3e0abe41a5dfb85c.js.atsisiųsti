@@ -1,0 +1,14 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[8801],{75462:function(n,t,r){"use strict";function e(n){var t=function(t,r){return{type:n,payload:t,meta:r}};return t.toString=function(){return n},t}r.d(t,{Lq:function(){return i},TS:function(){return a},mq:function(){return e},t8:function(){return c},u4:function(){return o}});/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */var u=function(){return(u=Object.assign||function(n){for(var t,r=1,e=arguments.length;r<e;r++)for(var u in t=arguments[r])Object.prototype.hasOwnProperty.call(t,u)&&(n[u]=t[u]);return n}).apply(this,arguments)},o=function(n,t){var r;return(r={})[n.toString()]=t,r},i=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=t.reduce(function(n,t){return u({},n,t)},{});return function(t,r){return(void 0===t&&(t=n),e.hasOwnProperty(r.type))?e[r.type](t,r):t}},c=function(n,t){return t.payload},a=function(n,t){return u({},n,t.payload)}},78801:function(n,t,r){"use strict";r.r(t),r.d(t,{AppCheck:function(){return a}});var e=r(85893),u=r(57202),o=r(59266),i=r(11163),c=r(67294);let a=n=>{let t=(0,i.useRouter)(),r=(0,u.I)(),a=(0,u.v)(n=>n.global.isAppReady),l=(0,u.v)(n=>n.translations.localeInitDone);return c.useEffect(()=>{(null==t?void 0:t.isReady)&&l&&(a||r((0,o.Sf)(!0)))},[null==t?void 0:t.isReady,l]),(0,e.jsx)(e.Fragment,{children:null==n?void 0:n.children})}},57202:function(n,t,r){"use strict";r.d(t,{I:function(){return u},v:function(){return o}});var e=r(9473);let u=()=>(0,e.I0)(),o=e.v9},59266:function(n,t,r){"use strict";r.d(t,{QO:function(){return o},Sf:function(){return u}});var e=r(75462);let u=(0,e.mq)("global.set_is_app_ready"),o=(0,e.mq)("global.set_new_apollo_client");(0,e.mq)("global.set_apollo_client")},11163:function(n,t,r){n.exports=r(80880)}}]);
