@@ -85,3 +85,69 @@ iframe[name="content-frame"] {
     padding: 5px;
     border-radius: 5px;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
+
+.add-blank-container {
+    text-align: right; /* Aligns the button to the right */
+    margin-bottom: 20px; /* Adds some space between the button and the table */
+}
+
+.add-blank-container button {
+    padding: 10px 20px; /* Adds some padding to the button */
+    background-color: #007BFF; /* Button color */
+    color: #FFFFFF; /* Text color */
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a hand when hovering over the button */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.add-blank-container button:hover {
+    background-color: #0056b3; /* Darkens the button color when hovered */
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

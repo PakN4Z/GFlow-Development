@@ -6,5 +6,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('.view-blanks-table').DataTable();
+    setTimeout(function() {
+        $('.view-blanks-table').DataTable();
+    }, 500);
 });
