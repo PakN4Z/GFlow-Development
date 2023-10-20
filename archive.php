@@ -39,7 +39,7 @@
             <?php
             // Fetch materials from the database and populate the dropdown
             include 'db_connection.php'; // Include your database connection file
-            $result = $conn->query("SELECT * FROM blanks WHERE location='ARCHIVE'");
+            $result = $conn->query("SELECT name FROM materials");
             while ($row = $result->fetch_assoc()) {
                 echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
             }
@@ -72,7 +72,7 @@
         <tbody>
             <?php
             include 'db_connection.php';
-            $result = $conn->query("SELECT * FROM blanks");
+            $result = $conn->query("SELECT * FROM blanks WHERE location='ARCHIVE'");
             while ($row = $result->fetch_assoc()) {
                 echo "<tr data-id='" . $row['id'] . "'>";
                 echo "<td>" . $row['id'] . "</td>";
@@ -132,20 +132,39 @@
 function disableEditing(row) {
     row.removeClass('editing-row');
     
-    // Revert text fields to display state
+    // Data to be sent to the server
+    var data = {
+        id: row.data("id")
+    };
+    
+    // Revert text fields to display state and collect data
     row.find('.editable').each(function() {
         var cell = $(this);
         var inputValue = cell.find('input').val();
+        var column = cell.data("column");
+        data[column] = inputValue;
         cell.text(inputValue);
     });
 
-    // Revert dropdown fields to display state
+    // Revert dropdown fields to display state and collect data
     row.find('.editable-dropdown').each(function() {
         var cell = $(this);
         var selectedValue = cell.find('select').val();
+        var column = cell.data("column");
+        data[column] = selectedValue;
         cell.data("value", selectedValue).text(selectedValue);
     });
+
+    // Send the data to the server
+	console.log(data);
+    $.post("update_blank.php", data, function(response) {
+        if (response !== "success") {
+            alert("Error updating record!");
+        }
+    });
 }
+
+
 
     </script>
 	<script>
@@ -215,9 +234,15 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 $(document).ready(function() {
     $('.view-blanks-table').DataTable();
 });
+
+
+
+
+
 
 </script>
 

@@ -12,10 +12,11 @@ $scaling_factor = $_POST['scaling_factor'];
 $lot_number = $_POST['lot_number'];
 $location = $_POST['location'];
 $comments = $_POST['comments'];
+$material = $_POST['material'];  // Get the material from POST data
 
-$query = "UPDATE blanks SET thickness=?, diameter=?, scaling_factor=?, lot_number=?, location=?, comments=? WHERE id=?";
+$query = "UPDATE blanks SET thickness=?, diameter=?, scaling_factor=?, lot_number=?, location=?, comments=?, material=? WHERE id=?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("dddsdss", $thickness, $diameter, $scaling_factor, $lot_number, $location, $comments, $id);
+$stmt->bind_param("dddsdsss", $thickness, $diameter, $scaling_factor, $lot_number, $location, $comments, $material, $id);
 $result = $stmt->execute();
 
 if ($result) {
