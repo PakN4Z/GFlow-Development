@@ -15,7 +15,7 @@ $comments = $_POST['comments'];
 
 $query = "UPDATE blanks SET thickness=?, diameter=?, scaling_factor=?, lot_number=?, location=?, comments=? WHERE id=?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("ssssssd", $thickness, $diameter, $scaling_factor, $lot_number, $location, $comments, $id);
+$stmt->bind_param("dddsdss", $thickness, $diameter, $scaling_factor, $lot_number, $location, $comments, $id);
 $result = $stmt->execute();
 
 if ($result) {

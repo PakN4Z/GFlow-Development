@@ -132,43 +132,38 @@
 function disableEditing(row) {
     row.removeClass('editing-row');
     
-    var id = row.data("id");
-    var thickness = row.find("[data-column='thickness']").text();
-    var diameter = row.find("[data-column='diameter']").text();
-    var scaling_factor = row.find("[data-column='scaling_factor']").text();
-    var lot_number = row.find("[data-column='lot_number']").text();
-    var location = row.find("[data-column='location']").data("value");
-    var comments = row.find("[data-column='comments']").text();
+    // Data to be sent to the server
+    var data = {
+        id: row.data("id")
+    };
+    
+    // Revert text fields to display state and collect data
+    row.find('.editable').each(function() {
+        var cell = $(this);
+        var inputValue = cell.find('input').val();
+        var column = cell.data("column");
+        data[column] = inputValue;
+        cell.text(inputValue);
+    });
 
-    // Send the updated data to the server
-    $.post("update_blank.php", {
-        id: id,
-        thickness: thickness,
-        diameter: diameter,
-        scaling_factor: scaling_factor,
-        lot_number: lot_number,
-        location: location,
-        comments: comments
-    }, function(response) {
+    // Revert dropdown fields to display state and collect data
+    row.find('.editable-dropdown').each(function() {
+        var cell = $(this);
+        var selectedValue = cell.find('select').val();
+        var column = cell.data("column");
+        data[column] = selectedValue;
+        cell.data("value", selectedValue).text(selectedValue);
+    });
+
+    // Send the data to the server
+	console.log(data);
+    $.post("update_blank.php", data, function(response) {
         if (response !== "success") {
             alert("Error updating record!");
         }
     });
-
-    // Revert text fields to display state
-    row.find('.editable').each(function() {
-        var cell = $(this);
-        var inputValue = cell.find('input').val();
-        cell.text(inputValue);
-    });
-
-    // Revert dropdown fields to display state
-    row.find('.editable-dropdown').each(function() {
-        var cell = $(this);
-        var selectedValue = cell.find('select').val();
-        cell.data("value", selectedValue).text(selectedValue);
-    });
 }
+
 
 
     </script>
