@@ -18,19 +18,19 @@
 				
 			</li>
 			<li>
-				<span class="toggle-btn">+</span>Settings
+				<span class="toggle-btn">+ Settings</span>
 				<ul class="submenu">
 					<li><a href="machines_view.php" target="content-frame">Machines</a></li>
-					<li><a href="#">Post Processors</a></li>
+					<li><a href="postprocessors_view.php" target="content-frame">Post processors</a></li>
 					<li><a href="materials_view.php" target="content-frame">Materials</a></li>
 				</ul>
 			</li>
             <li>
-                <span class="toggle-btn">+</span>Orders
+                <span class="toggle-btn">+ Orders</span>
                 <ul class="submenu">
                     <li><a href="#">New orders</a></li>
                     <li>
-                        <span class="toggle-btn">+</span>Milling calculations
+                        <span class="toggle-btn">+ Milling calculations</span>
                         <ul class="submenu">
                             <li><a href="#">Hyperdent calculations</a></li>
                         </ul>
@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li>
-                <span class="toggle-btn">+</span>Milling machines
+                <span class="toggle-btn">+ Milling machines</span>
                 <ul class="submenu">
                     <li><a href="#">1st machine</a></li>
                     <li><a href="#">2nd machine</a></li>
@@ -65,8 +65,7 @@
         // Toggle the submenu of the clicked button
         $(this).siblings(".submenu").slideToggle();
 
-        // Change the text of the button from "+" to "-" and vice versa
-        $(this).text($(this).text() === '+' ? '-' : '+');
+        
     });
 });
 

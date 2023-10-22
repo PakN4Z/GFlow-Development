@@ -67,10 +67,10 @@ $(document).ready(function() {
                     echo "<tr data-id='" . $row['id'] . "'>";
                     echo "<td>" . $row['id'] . "</td>";
                     echo "<td class='editable' data-column='name'>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['machine_type'] . "</td>";
+                    echo "<td class='editable' data-column='machine_type'>" . $row['machine_type'] . "</td>";
 					echo "<td class='editable' data-column='nc_extension'>" . $row['nc_extension'] . "</td>";
 					echo "<td class='editable' data-column='remote_ip'>" . $row['remote_ip'] . "</td>";
-					echo "<td>" . $row['auto_sleep'] . "</td>";
+					echo "<td class='editable' data-column='auto_sleep'>" . $row['auto_sleep'] . "</td>";
                     echo "<td><button class='edit-row-btn'>Edit</button> <button class='delete-row-btn'>X</button></td>";
                     echo "</tr>";
                 }
@@ -91,33 +91,51 @@ $(document).ready(function() {
         row.find('.editable').each(function() {
             var cell = $(this);
             var originalContent = cell.text();
-            cell.html("<input type='text' value='" + originalContent + "' />");
+            var column = cell.data("column");
+            
+            if (column === 'auto_sleep') {
+                // Create a dropdown for the auto_sleep column
+                var selectHtml = '<select name="auto_sleep">';
+                selectHtml += '<option value="Disabled"' + (originalContent === 'Disabled' ? ' selected' : '') + '>Disabled</option>';
+                selectHtml += '<option value="15 min"' + (originalContent === '15 min' ? ' selected' : '') + '>15 min</option>';
+                selectHtml += '<option value="30 min"' + (originalContent === '30 min' ? ' selected' : '') + '>30 min</option>';
+                selectHtml += '</select>';
+                cell.html(selectHtml);
+            } else {
+                cell.html("<input type='text' value='" + originalContent + "' />");
+            }
         });
     }
 
     // Function to disable editing for a row and send updated data to the server
-function disableEditing(row) {
-    row.removeClass('editing-row');
-    
-    var data = {
-        id: row.data("id")
-    };
-    
-    row.find('.editable').each(function() {
-        var cell = $(this);
-        var inputValue = cell.find('input').val();
-        var column = cell.data("column");
-        data[column] = inputValue;
-        cell.text(inputValue);
-    });
+    function disableEditing(row) {
+        row.removeClass('editing-row');
+        
+        var data = {
+            id: row.data("id")
+        };
+        
+        row.find('.editable').each(function() {
+            var cell = $(this);
+            var column = cell.data("column");
+            
+            if (column === 'auto_sleep') {
+                var selectedValue = cell.find('select').val();
+                data[column] = selectedValue;
+                cell.text(selectedValue);
+            } else {
+                var inputValue = cell.find('input').val();
+                data[column] = inputValue;
+                cell.text(inputValue);
+            }
+        });
 
-    $.post("update_machine.php", data, function(response) {
-        if (response !== "Machine updated successfully!") {
-            alert("Error updating machine: " + response);
-        }
-    });
-}
-
+        $.post("update_machine.php", data, function(response) {
+            if (response !== "Machine updated successfully!") {
+                alert("Error updating machine: " + response);
+            }
+        });
+    }
 
     // When the Edit button is clicked
     $(".edit-row-btn").click(function() {
