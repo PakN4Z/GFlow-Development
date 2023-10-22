@@ -20,7 +20,7 @@
 			<li>
 				<span class="toggle-btn">+</span>Settings
 				<ul class="submenu">
-					<li><a href="#">Machines</a></li>
+					<li><a href="machines_view.php" target="content-frame">Machines</a></li>
 					<li><a href="#">Post Processors</a></li>
 					<li><a href="materials_view.php" target="content-frame">Materials</a></li>
 				</ul>
