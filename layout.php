@@ -12,23 +12,19 @@
 <div class="container">
     <div class="sidebar">
         <!-- Navigation Menu -->
-        <ul class="navbar">
-            <li>
-                <span class="toggle-btn">+</span>Blanks
-                <ul class="submenu">
-                    <li><a href="#">Stock</a></li>
-                    <li><a href="#">Machine</a></li>
-                    <li><a href="#">Archive</a></li>
-                </ul>
-            </li>
-            <li>
-                <span class="toggle-btn">+</span>Settings
-                <ul class="submenu">
-                    <li><a href="#">Machines</a></li>
-                    <li><a href="#">Post Processors</a></li>
-                    <li><a href="#">Materials</a></li>
-                </ul>
-            </li>
+				<ul class="navbar">
+			<li>
+				<a href="view_blanks.php" target="content-frame">Blanks</a>
+				
+			</li>
+			<li>
+				<span class="toggle-btn">+</span>Settings
+				<ul class="submenu">
+					<li><a href="#">Machines</a></li>
+					<li><a href="#">Post Processors</a></li>
+					<li><a href="materials_view.php" target="content-frame">Materials</a></li>
+				</ul>
+			</li>
             <li>
                 <span class="toggle-btn">+</span>Orders
                 <ul class="submenu">
