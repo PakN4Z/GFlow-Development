@@ -67,10 +67,10 @@ $(document).ready(function() {
                     echo "<tr data-id='" . $row['id'] . "'>";
                     echo "<td>" . $row['id'] . "</td>";
                     echo "<td class='editable' data-column='name'>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['machineType'] . "</td>";
-                    echo "<td class='editable' data-column='ncExtension'>" . $row['ncExtension'] . "</td>";
-                    echo "<td class='editable' data-column='remoteIp'>" . $row['remoteIp'] . "</td>";
-                    echo "<td>" . $row['autoSleep'] . "</td>";
+                    echo "<td>" . $row['machine_type'] . "</td>";
+					echo "<td class='editable' data-column='nc_extension'>" . $row['nc_extension'] . "</td>";
+					echo "<td class='editable' data-column='remote_ip'>" . $row['remote_ip'] . "</td>";
+					echo "<td>" . $row['auto_sleep'] . "</td>";
                     echo "<td><button class='edit-row-btn'>Edit</button> <button class='delete-row-btn'>X</button></td>";
                     echo "</tr>";
                 }
@@ -96,27 +96,28 @@ $(document).ready(function() {
     }
 
     // Function to disable editing for a row and send updated data to the server
-    function disableEditing(row) {
-        row.removeClass('editing-row');
-        
-        var data = {
-            id: row.data("id")
-        };
-        
-        row.find('.editable').each(function() {
-            var cell = $(this);
-            var inputValue = cell.find('input').val();
-            var column = cell.data("column");
-            data[column] = inputValue;
-            cell.text(inputValue);
-        });
+function disableEditing(row) {
+    row.removeClass('editing-row');
+    
+    var data = {
+        id: row.data("id")
+    };
+    
+    row.find('.editable').each(function() {
+        var cell = $(this);
+        var inputValue = cell.find('input').val();
+        var column = cell.data("column");
+        data[column] = inputValue;
+        cell.text(inputValue);
+    });
 
-        $.post("update_machine.php", data, function(response) {
-            if (response !== "Machine updated successfully!") {
-                alert("Error updating machine!");
-            }
-        });
-    }
+    $.post("update_machine.php", data, function(response) {
+        if (response !== "Machine updated successfully!") {
+            alert("Error updating machine: " + response);
+        }
+    });
+}
+
 
     // When the Edit button is clicked
     $(".edit-row-btn").click(function() {
